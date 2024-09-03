@@ -3,11 +3,12 @@ import { Component, NgModule } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Item } from './item';
 import { FormsModule } from '@angular/forms';
+import { ItemComponent } from './item/item.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,FormsModule],
+  imports: [RouterOutlet,CommonModule,FormsModule,ItemComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -37,5 +38,8 @@ export class AppComponent {
       done:false
     })
     this.desc="";
+  }
+  remove(item: Item){
+    this.allItems.splice(this.allItems.indexOf(item),1);
   }
 }

@@ -8,4 +8,38 @@
 </ul>
 <input type="text" class="lg-text-input" [(ngModel)]="desc" placeholder="Add Item" id="addItemInput">
 <button class="btn-primary" (click)="addItem(desc)">Add Item</button>
+
+<!-- filtering component -->
+<div class="btn-wrapper">
+  <button class="btn" [class.active]="filter=='all'"
+  (click)="filter = 'all'">
+  All
+</button>
+<button class="btn"
+[class.active]="filter=='active'"
+(click)="filter = 'active'">
+To Do
+</button>
+
+<button class="btn"
+[class.active]="filter=='done'"
+(click)="filter = 'done'">
+Done
+</button>
+</div>
+
+
+<!-- app-filter component  list of items -->
+<h2>
+  {{items.length}}
+  <span *ngIf="items.length === 1; else elseBlock">item</span>
+  <ng-template #elseBlock>items</ng-template>
+</h2>
+
+<ul>
+  <li *ngFor="let i of items">
+    <app-item (remove)="remove(i)" [item]="i"></app-item>
+  </li>
+</ul>
+
 <router-outlet></router-outlet>
